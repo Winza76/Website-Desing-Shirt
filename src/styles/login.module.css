@@ -43,8 +43,15 @@
   outline: none;
 }
 
+/* รองรับผู้ใช้ที่ตั้งค่าลดการเคลื่อนไหว */
+@media (prefers-reduced-motion: reduce) {
+  .imageSide {
+    scroll-behavior: auto;
+  }
+}
+
 @media (min-width: 768px) {
   .imageSide {
-    min-height: 100vh;
+    min-height: 620px;
   }
 }
