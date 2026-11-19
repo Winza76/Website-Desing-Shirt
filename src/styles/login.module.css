@@ -1,0 +1,38 @@
+.Container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.imageSide {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.formSide {
+  width: 100%;
+}
+
+.formBox {
+  width: 100%;
+  max-width: 400px;
+}
+
+.input {
+  outline: none;
+}
+
+.loginBtn {
+  border: none;
+}
+
+.socialBtn {
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .imageSide {
+    min-height: 100vh;
+  }
+}
