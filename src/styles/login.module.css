@@ -23,6 +23,18 @@
   outline: none;
 }
 
+.input::-ms-reveal,
+.input::-ms-clear {
+  display: none;
+}
+
+.input::-webkit-credentials-auto-complete-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
 .loginBtn {
   border: none;
 }

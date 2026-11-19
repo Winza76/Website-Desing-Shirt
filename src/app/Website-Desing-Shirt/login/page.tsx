@@ -36,42 +36,9 @@ const LockIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
   </svg>
 );
 
-const EyeIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
-
-const EyeOffIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
-    <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
-    <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
-    <path d="m2 2 20 20" />
-  </svg>
-);
-
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -91,7 +58,7 @@ const LoginPage = () => {
   const glassInputWrapperClass =
     "group relative flex h-[50px] w-full items-center rounded-full border border-white/85 bg-gradient-to-b from-white/60 to-white/25 px-4 shadow-[inset_0_2px_3px_rgba(255,255,255,0.95),inset_0_-3px_6px_rgba(15,23,42,0.08),0_10px_22px_-5px_rgba(15,23,42,0.15),0_4px_8px_-2px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-200 focus-within:-translate-y-[1px] focus-within:border-cyan-400 focus-within:from-white/80 focus-within:to-white/45 focus-within:shadow-[inset_0_2px_3px_rgba(255,255,255,1),0_14px_28px_-6px_rgba(6,182,212,0.28)] focus-within:ring-2 focus-within:ring-cyan-400/35";
 
-  const glassInputFieldClass = `${styles.input} peer h-full w-full bg-transparent pl-9 pr-2 text-[13px] font-medium text-gray-900 placeholder-transparent focus:outline-none`;
+  const glassInputFieldClass = `${styles.input} peer h-full w-full bg-transparent pl-9 pr-3 text-[13px] font-medium text-gray-900 placeholder-transparent focus:outline-none [&::-ms-clear]:hidden [&::-ms-reveal]:hidden [&::-webkit-credentials-auto-complete-button]:hidden`;
 
   const floatingLabelClass =
     "pointer-events-none absolute left-12 top-1/2 -translate-y-1/2 cursor-text rounded-full px-2 text-[13px] font-medium text-gray-500 transition-all duration-200 ease-out peer-focus:left-4 peer-focus:top-0 peer-focus:bg-gradient-to-r peer-focus:from-cyan-500 peer-focus:to-teal-500 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-white peer-focus:shadow-[0_2px_8px_rgba(6,182,212,0.35)] peer-[:not(:placeholder-shown)]:left-4 peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-gray-800 peer-[:not(:placeholder-shown)]:shadow-sm";
@@ -134,11 +101,11 @@ const LoginPage = () => {
           <div className={`${styles.formBox} relative z-10 w-full max-w-[390px]`}>
             {/* จัดกึ่งกลางส่วนหัวข้อและคำอธิบาย */}
             <div className="mb-7 text-center">
-              <h1 className="mb-1 text-2xl font-bold text-gray-900">
+              <h1 className="mb-2.5 -translate-y-2 bg-gradient-to-r from-cyan-600 via-teal-600 to-sky-600 bg-clip-text text-2xl font-extrabold tracking-tight text-transparent md:text-[28px]">
                 เข้าสู่ระบบ
               </h1>
-              <p className="text-xs font-medium text-gray-700">
-                เข้าสู่ระบบเพื่อจัดการบัญชีและติดตามคำสั่งซื้อของคุณ
+              <p className="text-xs font-medium text-gray-600">
+                เว็บไซต์ออกแบบเสื้อผ้าออนไลน์ Design Shirt
               </p>
             </div>
 
@@ -161,34 +128,22 @@ const LoginPage = () => {
                 </label>
               </div>
 
-              {/* ช่องรหัสผ่านแบบกระจกนูน + ไอคอน + ปุ่มดูรหัสผ่าน + Floating Label */}
+              {/* ช่องรหัสผ่านแบบกระจกนูน + ไอคอน + Floating Label */}
               <div className={glassInputWrapperClass}>
                 <LockIcon className="h-4 w-4 shrink-0 text-gray-500 transition-colors duration-200 group-focus-within:text-cyan-600" />
                 <input
                   id="password"
-                  type={showPassword ? "text" : "password"}
+                  type="password"
                   required
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder=" "
-                  className={`${glassInputFieldClass} pr-8`}
+                  className={glassInputFieldClass}
                 />
                 <label htmlFor="password" className={floatingLabelClass}>
                   รหัสผ่าน
                 </label>
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                  aria-label={showPassword ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}
-                  className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-white/70 hover:text-cyan-700"
-                >
-                  {showPassword ? (
-                    <EyeOffIcon className="h-4 w-4" />
-                  ) : (
-                    <EyeIcon className="h-4 w-4" />
-                  )}
-                </button>
               </div>
 
               {/* ลืมรหัสผ่าน */}
