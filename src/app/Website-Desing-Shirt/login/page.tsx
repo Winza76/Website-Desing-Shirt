@@ -1,4 +1,3 @@
-
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
@@ -66,9 +65,42 @@ const LockIcon = ({
   </svg>
 );
 
+const EyeIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+const EyeOffIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+    <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+    <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+    <path d="m2 2 20 20" />
+  </svg>
+);
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // สถานะควบคุมสไลด์เสื้อ
@@ -121,6 +153,9 @@ const LoginPage = () => {
 
   const glassInputFieldClass =
     `${styles.input} peer h-full w-full bg-transparent pl-9 pr-3 text-[13px] font-medium text-gray-900 placeholder-transparent focus:outline-none [&::-ms-clear]:hidden [&::-ms-reveal]:hidden [&::-webkit-credentials-auto-complete-button]:hidden`;
+
+  const passwordInputFieldClass =
+    `${styles.input} peer h-full w-full bg-transparent pl-9 pr-10 text-[13px] font-medium text-gray-900 placeholder-transparent focus:outline-none [&::-ms-clear]:hidden [&::-ms-reveal]:hidden [&::-webkit-credentials-auto-complete-button]:hidden`;
 
   const floatingLabelClass =
     "pointer-events-none absolute left-12 top-1/2 -translate-y-1/2 cursor-text rounded-full px-2 text-[13px] font-medium text-gray-500 transition-all duration-200 ease-out peer-focus:left-4 peer-focus:top-0 peer-focus:bg-gradient-to-r peer-focus:from-cyan-500 peer-focus:to-teal-500 peer-focus:text-[11px] peer-focus:font-semibold peer-focus:text-white peer-focus:shadow-[0_2px_8px_rgba(6,182,212,0.35)] peer-[:not(:placeholder-shown)]:left-4 peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-gray-800 peer-[:not(:placeholder-shown)]:shadow-sm";
@@ -250,18 +285,31 @@ const LoginPage = () => {
 
                 <input
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   required
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder=" "
-                  className={glassInputFieldClass}
+                  className={passwordInputFieldClass}
                 />
 
                 <label htmlFor="password" className={floatingLabelClass}>
                   รหัสผ่าน
                 </label>
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  aria-label={showPassword ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}
+                  className="ml-1 shrink-0 cursor-pointer text-gray-500 transition-colors hover:text-cyan-600 focus:outline-none"
+                >
+                  {showPassword ? (
+                    <EyeOffIcon className="h-4 w-4" />
+                  ) : (
+                    <EyeIcon className="h-4 w-4" />
+                  )}
+                </button>
               </div>
 
               {/* ลืมรหัสผ่าน */}
